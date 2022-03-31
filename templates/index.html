@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="irhead">IRIS Species Prediction</h1>
+    <div class="login">
+        <main>
+            <form action="{{ url_for('predict')}}" method="POST">
+                <label for="sple">Sepal Length (cm): </label>
+                <input id="sple" type="text" name="sepal length (cm)" placeholder="sepal length (cm)" required="required"/><br>
+                <label for="sewi">Sepal Width (cm): </label>
+                <input id="sewi" type="text" name="sepal width (cm)" placeholder="sepal width (cm)" required="required"/><br>
+                <label for="pele">Petal Length (cm): </label>
+                <input type="text" name="petal length (cm)" placeholder="petal length (cm)" required="required"/><br>
+                <label for="pwi">Petal Width (cm): </label>
+                <input id="pwi" type="text" name="petal width (cm)" placeholder="petal width (cm)" required="required"/><br>
+                <button type="submit" class="btn">Predict the species</button>
+            </form>
+            <br>
+            <br>
+        </main>
+        <div class="resul">
+            {{prediction_species}}
+        </div>
+    </div>
+</body>
+</html>
