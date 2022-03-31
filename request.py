@@ -16,8 +16,6 @@ print(data.json())
 
 
 
-
-
 # '''
 # data=[[7,3,4,1.5]]
 # j_data = json.dumps(data)
