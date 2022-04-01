@@ -1,11 +1,15 @@
-import numpy as np 
-import pandas as pd 
-import matplotlib.pyplot as plt
-from scipy.sparse.construct import rand 
+"""
+Simple KNN classification of Iris dataset.
+Purpose is to produce the pickle artefact that can be used in the Flask app
+"""
+
+import pickle
+import numpy as np
+# import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
-import pickle
+
 
 #classifier code
 

@@ -1,16 +1,11 @@
+from app import app
 from flask import Flask, request, jsonify, render_template
+import pickle
 import numpy as np 
 import pandas as pd
-import pickle
 
 
-app=Flask(__name__)
-model=pickle.load(open("model.pkl", "rb"))
-
-
-@app.route('/')
-def home():
-    return render_template('index.html')
+model=pickle.load(open("model/model.pkl", "rb"))
 
 
 @app.route('/predict', methods=['POST'])
@@ -44,7 +39,3 @@ def api_predict_file():
     prediction = model.predict(data)
     species = ['setosa','versicolor','virginica']
     return str(list(prediction))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

@@ -11,7 +11,7 @@ print(data.json())
 
 
 # 2. For a CSV file prediction (using /predict_api_file)
-# Using CURL: curl -F "file=@iris_to_predict.csv" http://127.0.0.1:5000/api_predict_file
+# Using CURL: curl -F "file=@data/iris_to_predict.csv" http://127.0.0.1:5000/api_predict_file (do this from the root of the repo)
 # Using python request: TODO
 
 
