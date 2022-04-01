@@ -5,6 +5,7 @@ from flask import Flask
 app = Flask(__name__)
 
 from app import views
+from app import routes
 
 
 # def create_app(test_config=None):
