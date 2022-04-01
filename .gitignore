@@ -7,8 +7,12 @@ instance/
 
 .pytest_cache/
 .coverage
+coverage.xml
 htmlcov/
+html_cov/
+junit/
 
 dist/
 build/
 *.egg-info/
+

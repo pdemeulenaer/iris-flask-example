@@ -2,14 +2,18 @@ Simple Flask demo, copied and modified from https://github.com/GhostUser/IRIS-cl
 
 What has been added:
 
+* Strongly modified Flask app structure, following tutorial here: https://pythonise.com/series/learning-flask/flask-application-structure
+
 * predict_api_file in the flask app, so that now we can predict a whole CSV file
 
 TODO
-
-* transform the project structure to follow the standard flask structure as described in https://flask.palletsprojects.com/en/2.1.x/tutorial/layout/ and https://flask.palletsprojects.com/en/2.1.x/tutorial/factory/
 
 * add CI/CD pipeline
 
 * add unit tests
 
+* use mock in tests?
+
 * add mlflow tracking and model registration
+
+* containarize the flask app: follow https://pythonise.com/series/learning-flask/building-a-flask-app-with-docker-compose (seems more advanced than usual containarized Flask setups)
