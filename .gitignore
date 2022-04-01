@@ -9,9 +9,10 @@ instance/
 .coverage
 coverage.xml
 htmlcov/
+html_cov/
+junit/
 
 dist/
 build/
 *.egg-info/
 
-junit/
