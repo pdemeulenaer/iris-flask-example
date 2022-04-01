@@ -1,0 +1,11 @@
+[run]
+omit =
+    # omit anything in a .local directory anywhere
+    ./venv/*, ./tests/*, ./junit/*
+
+[report]
+omit =
+    # Don't include test step files.
+exclude_lines =
+    # Ignore methods with this comment.
+    pragma: no cover

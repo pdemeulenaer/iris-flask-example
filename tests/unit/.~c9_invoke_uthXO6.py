@@ -22,22 +22,18 @@ def test_about(client):
     # assert resp.json.get('message', 'All about Flask') 
     
     
-def test_api_predict(client):
-    """
-    GIVEN the model served in the app
-    WHEN one row of data is sent
-    THEN check that the app returns one value in ['setosa','versicolor','virginica']
-    """    
+def test_predict(client):
     data = {
         'sepal length (cm)': 7,
         'sepal width (cm)': 3,
         'petal length (cm)': 4,
         'petal width (cm)': 1.5
     }
-    url = '/api_predict'
-    
-    response = client.post(url, json=data)
+    url = '/predict'
+    # url = 'http://localhost:5000/api_predict'
+    # data = requests.post(url,json={'sepal length (cm)': 7, 'sepal width (cm)': 3, 'petal length (cm)': 4, 'petal width (cm)': 1.5})
+
+    response = client.post(url, data=json.dump(data))
 
     assert response.content_type == 'application/json'
-    print(response.json)
-    assert response.json in ['setosa','versicolor','virginica'] #== 'versicolor' or response.json == 'virginica'
+    assert response.json['Result'] == 'versicolor'    
