@@ -12,7 +12,7 @@ format:
 	black *.py
 
 test:
-	python -m pytest -vv #--cov=hello test_hello.py
+	python -m pytest -vv --disable-warnings #--cov=hello test_hello.py
 	
 run_dev:
 	flask run
