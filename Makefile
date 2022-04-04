@@ -12,7 +12,7 @@ format:
 	black *.py
 
 test:
-	python -m pytest -vv --disable-warnings tests/ --junitxml=junit/test-results.xml --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml --cov-report term --cov-report html:cov_html #--doctest-modules #--cov=hello test_hello.py
+	python -m pytest -vv --disable-warnings tests/ --junitxml=junit/test-results.xml --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml --cov-report term #--cov-report html:cov_html #--doctest-modules #--cov=hello test_hello.py
 	
 run_dev:
 	flask run
