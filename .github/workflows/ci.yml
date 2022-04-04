@@ -13,13 +13,44 @@ on:
       - 'v*' # this tag type is used for release pipelines
 
 jobs:
-  test-pipeline:
+#   test-pipeline:
 
+#     runs-on: ubuntu-latest
+#     strategy:
+#       max-parallel: 4
+
+#     steps:
+#       - uses: actions/checkout@v1
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.7.9
+
+#       - name: Install pip
+#         run: |
+#           make install
+
+#     #   - name: Install dependencies and project in dev mode
+#     #     run: |
+#     #       pip install -r unit-requirements.txt
+#     #       pip install -e .
+        
+#       - name: Run pylint code analysis
+#         run: |
+#           echo "Launching pylint code analysis"
+#           make lint
+
+#       - name: Run unit tests
+#         run: |
+#           echo "Launching unit tests"
+#           make test
+          
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-
     steps:
+    
       - uses: actions/checkout@v1
 
       - name: Set up Python
@@ -44,12 +75,10 @@ jobs:
       - name: Run unit tests
         run: |
           echo "Launching unit tests"
-          make test
-          
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
+          make test    
+    
+    
+    
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
