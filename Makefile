@@ -6,7 +6,7 @@ install:
 		pip install -r requirements.txt
         
 lint:
-	python -m pylint --fail-under=1 --rcfile .pylintrc model/ tests/ app/ -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint_report.txt #pylint --disable=R,C model.py
+	python -m pylint --fail-under=2 --rcfile .pylintrc model/ tests/ app/ -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint_report.txt #pylint --disable=R,C model.py
 
 format:
 	black *.py
