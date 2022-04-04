@@ -8,9 +8,11 @@ What has been added:
 
 * fixed version of packages
 
+* added CI/CD pipeline (github actions)
+
 TODO
 
-* add CI/CD pipeline (github actions)
+* add a deployment in the CD
 
 * add unit tests
 
