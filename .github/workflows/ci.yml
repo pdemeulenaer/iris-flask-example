@@ -85,7 +85,7 @@ jobs:
           echo "Launching unit tests"
           ls -a   
     
-    
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
