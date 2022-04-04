@@ -11,6 +11,7 @@ coverage.xml
 htmlcov/
 html_cov/
 junit/
+pylint_report.txt
 
 dist/
 build/

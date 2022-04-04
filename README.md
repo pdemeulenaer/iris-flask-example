@@ -6,9 +6,11 @@ What has been added:
 
 * predict_api_file in the flask app, so that now we can predict a whole CSV file
 
+* fixed version of packages
+
 TODO
 
-* add CI/CD pipeline
+* add CI/CD pipeline (github actions)
 
 * add unit tests
 
