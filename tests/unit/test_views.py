@@ -1,6 +1,6 @@
 import pytest
 import json
-from io import BytesIO
+import io
 from app import app
 
 
@@ -25,7 +25,7 @@ def test_about(client):
     
 def test_api_predict(client):
     """
-    GIVEN the model served in the app
+    GIVEN the model served in the app for unique item through the api api_predict
     WHEN one row of data is sent
     THEN check that the app returns one value in ['setosa','versicolor','virginica']
     """    
@@ -45,14 +45,29 @@ def test_api_predict(client):
     
     
 
-# def test_api_predict_file(client):
+def test_api_predict_file(client):
+    '''
+    GIVEN the model served in the app for multiple items served in a CSV file to the api_predict_file api
+    WHEN one such CSV of data is sent
+    THEN check that the app returns one value in ['setosa','versicolor','virginica']    
+    '''
+    data = {
+        'field': 'value',
+        'file': (io.BytesIO(b'5.1,3.5,1.4,0.2\n 5.1,3.5,1.4,0.2\n'), 'test.csv')
+    }
+    
+    # data = dict(file=(io.BytesIO(b"5.1,3.5,1.4,0.2"), 'test.csv'),)
+    
+    # url = 'http://localhost:5000/api_predict_file'
+    # files = {'file': ('report.csv', open('../data/iris_to_predict.csv', 'r'))}
+    files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
+    # data = requests.post(url, files=files)    
 
-#     data = {
-#         'field': 'value',
-#         'file': (BytesIO(b'FILE CONTENT'), 'test.csv')
-#     }
-
-#     rv = client.post('/api_predict_file', buffered=True,
-#                      content_type='multipart/form-data',
-#                      data=data)
-#     assert rv.status_code == 200    
+    rv = client.post('/api_predict_file', 
+                    buffered=True, 
+                    content_type='multipart/form-data', 
+                    data=data, 
+                    follow_redirects=True)
+    
+    assert rv.status_code == 200 
+    # assert TODO: check that the answers are in the ['setosa','versicolor','virginica'] solution
