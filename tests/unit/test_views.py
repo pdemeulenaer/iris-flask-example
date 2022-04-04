@@ -1,5 +1,6 @@
 import pytest
 import json
+from io import BytesIO
 from app import app
 
 
@@ -41,3 +42,17 @@ def test_api_predict(client):
     assert response.content_type == 'application/json'
     print(response.json)
     assert response.json in ['setosa','versicolor','virginica'] #== 'versicolor' or response.json == 'virginica'
+    
+    
+
+# def test_api_predict_file(client):
+
+#     data = {
+#         'field': 'value',
+#         'file': (BytesIO(b'FILE CONTENT'), 'test.csv')
+#     }
+
+#     rv = client.post('/api_predict_file', buffered=True,
+#                      content_type='multipart/form-data',
+#                      data=data)
+#     assert rv.status_code == 200    
