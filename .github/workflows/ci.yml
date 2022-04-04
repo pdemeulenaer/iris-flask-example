@@ -77,6 +77,10 @@ jobs:
           echo "Launching unit tests"
           make test    
     
+      - name: Run unit tests
+        run: |
+          echo "Launching unit tests"
+          ls -a   
     
     
       - uses: actions/checkout@v2
