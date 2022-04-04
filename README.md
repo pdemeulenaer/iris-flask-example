@@ -1,3 +1,9 @@
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=pdemeulenaer_iris-flask-example&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=pdemeulenaer_iris-flask-example)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pdemeulenaer_iris-flask-example&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pdemeulenaer_iris-flask-example)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pdemeulenaer_iris-flask-example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=pdemeulenaer_iris-flask-example)
+
 Simple Flask demo, copied and modified from https://github.com/GhostUser/IRIS-classification-flask-api
 
 What has been added:
@@ -6,9 +12,13 @@ What has been added:
 
 * predict_api_file in the flask app, so that now we can predict a whole CSV file
 
+* fixed version of packages
+
+* added CI/CD pipeline (github actions)
+
 TODO
 
-* add CI/CD pipeline
+* add a deployment in the CD
 
 * add unit tests
 

@@ -6,13 +6,13 @@ install:
 		pip install -r requirements.txt
         
 lint:
-	pylint --rcfile .pylintrc model/ tests/ app/ #pylint --disable=R,C model.py
+	python -m pylint --fail-under=2 --rcfile .pylintrc model/ tests/ app/ -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint_report.txt #pylint --disable=R,C model.py
 
 format:
 	black *.py
 
 test:
-	python -m pytest -vv --disable-warnings tests/ --junitxml=junit/test-results.xml --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml --cov-report term --cov-report html:cov_html #--doctest-modules #--cov=hello test_hello.py
+	python -m pytest -vv --disable-warnings tests/ --junitxml=junit/test-results.xml --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml --cov-report term #--cov-report html:cov_html #--doctest-modules #--cov=hello test_hello.py
 	
 run_dev:
 	flask run
