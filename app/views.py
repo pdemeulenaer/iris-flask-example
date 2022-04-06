@@ -1,30 +1,39 @@
-from app import app
-from flask import Flask, request, jsonify, render_template
+'''
+This module contains the Flask app views
+'''
+
 import pickle
 import numpy as np 
 import pandas as pd
+from flask import request, jsonify, render_template
+from app import app
 
 
-model=pickle.load(open("model/model.pkl", "rb"))
-
-
-# @app.route("/")
-# def index():
-#     return "Hello world"
+# Model upload (should it be done here or within the relevant functions below?)
+model = pickle.load(open("model/model.pkl", "rb"))
 
 
 @app.route('/')
 def home():
+    '''
+    Home html rendering in Flask app
+    '''
     return render_template('index.html')
 
 
 @app.route("/about")
 def about():
+    '''
+    Test function in Flask app
+    '''
     return "All about Flask"
 
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    '''
+    This function allows direct prediction in the GUI
+    '''
     initial_features = [float(x) for x in request.form.values()]
     final_features = [np.array(initial_features)]
     predictions = model.predict(final_features)
@@ -43,7 +52,7 @@ def api_predict():
     species = ['setosa','versicolor','virginica']
     output = species[prediction[0]]
     return jsonify(output)
-    
+
 
 @app.route('/api_predict_file', methods=["POST"])
 def api_predict_file():
@@ -52,5 +61,5 @@ def api_predict_file():
     '''    
     data = pd.read_csv(request.files.get("file"))
     prediction = model.predict(data)
-    species = ['setosa','versicolor','virginica']
+    # species = ['setosa','versicolor','virginica']
     return str(list(prediction))    
