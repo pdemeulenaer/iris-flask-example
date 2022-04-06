@@ -1,5 +1,9 @@
+'''
+This module contains all the tests for the Flask app
+'''
+
+import io
 import pytest
-import json
 from app import app
 
 
@@ -13,18 +17,18 @@ def test_home(client):
 def test_home_bad_http_method(client):
     resp = client.post('/')
     assert resp.status_code == 405
-    
+
     
 def test_about(client):
     resp = client.get('/about')
     assert resp.status_code == 200
     # assert isinstance(resp.json, dict)
     # assert resp.json.get('message', 'All about Flask') 
-    
-    
+
+
 def test_api_predict(client):
     """
-    GIVEN the model served in the app
+    GIVEN the model served in the app for unique item through the api api_predict
     WHEN one row of data is sent
     THEN check that the app returns one value in ['setosa','versicolor','virginica']
     """    
@@ -41,3 +45,28 @@ def test_api_predict(client):
     assert response.content_type == 'application/json'
     print(response.json)
     assert response.json in ['setosa','versicolor','virginica'] #== 'versicolor' or response.json == 'virginica'
+
+
+
+def test_api_predict_file(client):
+    '''
+    GIVEN the model served in the app for multiple items served in a CSV file to the api_predict_file api
+    WHEN one such CSV of data is sent
+    THEN check that the app returns one value in ['setosa','versicolor','virginica']    
+    '''
+    data = {
+        'field': 'value',
+        'file': (io.BytesIO(b'5.1,3.5,1.4,0.2\n 5.1,3.5,1.4,0.2\n'), 'test.csv')
+    }
+    
+    # files = {'file': ('report.csv', open('../data/iris_to_predict.csv', 'r'))}
+    # files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
+
+    r = client.post('/api_predict_file', 
+                    buffered=True, 
+                    content_type='multipart/form-data', 
+                    data=data, 
+                    follow_redirects=True)
+
+    assert r.status_code == 200 
+    # assert TODO: check that the answers are in the ['setosa','versicolor','virginica'] solution
