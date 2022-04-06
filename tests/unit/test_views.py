@@ -62,11 +62,11 @@ def test_api_predict_file(client):
     # files = {'file': ('report.csv', open('../data/iris_to_predict.csv', 'r'))}
     # files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
 
-    rv = client.post('/api_predict_file', 
+    r = client.post('/api_predict_file', 
                     buffered=True, 
                     content_type='multipart/form-data', 
                     data=data, 
                     follow_redirects=True)
 
-    assert rv.status_code == 200 
+    assert r.status_code == 200 
     # assert TODO: check that the answers are in the ['setosa','versicolor','virginica'] solution
