@@ -1,6 +1,9 @@
-import pytest
-import json
+'''
+This module contains all the tests for the Flask app
+'''
+
 import io
+import pytest
 from app import app
 
 
@@ -14,15 +17,15 @@ def test_home(client):
 def test_home_bad_http_method(client):
     resp = client.post('/')
     assert resp.status_code == 405
-    
+
     
 def test_about(client):
     resp = client.get('/about')
     assert resp.status_code == 200
     # assert isinstance(resp.json, dict)
     # assert resp.json.get('message', 'All about Flask') 
-    
-    
+
+
 def test_api_predict(client):
     """
     GIVEN the model served in the app for unique item through the api api_predict
@@ -42,8 +45,8 @@ def test_api_predict(client):
     assert response.content_type == 'application/json'
     print(response.json)
     assert response.json in ['setosa','versicolor','virginica'] #== 'versicolor' or response.json == 'virginica'
-    
-    
+
+
 
 def test_api_predict_file(client):
     '''
@@ -56,18 +59,14 @@ def test_api_predict_file(client):
         'file': (io.BytesIO(b'5.1,3.5,1.4,0.2\n 5.1,3.5,1.4,0.2\n'), 'test.csv')
     }
     
-    # data = dict(file=(io.BytesIO(b"5.1,3.5,1.4,0.2"), 'test.csv'),)
-    
-    # url = 'http://localhost:5000/api_predict_file'
     # files = {'file': ('report.csv', open('../data/iris_to_predict.csv', 'r'))}
-    files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
-    # data = requests.post(url, files=files)    
+    # files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
 
     rv = client.post('/api_predict_file', 
                     buffered=True, 
                     content_type='multipart/form-data', 
                     data=data, 
                     follow_redirects=True)
-    
+
     assert rv.status_code == 200 
     # assert TODO: check that the answers are in the ['setosa','versicolor','virginica'] solution
